@@ -1,0 +1,39 @@
+
+<!--<div class="font">
+      โปรดเลือกไฟล์เป็น .docx
+</div>
+<div class="size">
+<button type="button" class="btn btn-success">เลือกไฟล์ &nbsp;<i class="fas fa-upload"></i></button>
+</div>
+-->
+<div *ngIf="all!=null">
+  <table class="table table-bordered table-info" width="60%">
+    <thead>
+      <tr>
+        <th scope="col">ISBN</th>
+        <th scope="col">author</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let i of all.record1;">
+          <th>{{i.ISBN}}</th>
+          <td>{{i.author}}</td>
+        </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="all2!=null">
+    <table class="table table-bordered table-info" width="60%">
+      <thead>
+        <tr>
+          <th scope="col">bookCode</th>
+          <th scope="col">bookTitle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let i of all2.record2;">
+            <th>{{i.bookCode}}</th>
+            <td>{{i.bookTitle}}</td>
+          </tr>
+      </tbody>
+    </table>

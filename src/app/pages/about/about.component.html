@@ -1,0 +1,85 @@
+<br>
+<div class="container-fluid">
+<div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder=" " aria-label="Recipient's username" aria-describedby="button-addon2">
+  <div class="input-group-append">
+    <button class="btn btn-outline-success" type="button" id="button-addon2">Search</button>
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+      <i class="fas fa-plus-circle"></i>
+    </button>
+  </div>
+</div>
+</div>
+<div *ngIf="all!=null">
+  <table class="table table-bordered table-info" width="60%">
+    <thead>
+      <tr>
+        <th scope="col">No</th>
+        <th scope="col">คำศัพไทย</th>
+        <th scope="col">คําอังกฤษ</th>
+        <th scope="col">ชนิด</th>
+        <th scope="col">ประเภท</th>
+        <th scope="col">ความหมาย</th>
+        <th scope="col">เเก่ไข</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let i of all.record;">
+          <th>{{i.No}}</th>
+          <td>{{i.ThaiWords}}</td>
+          <td>{{i.EngWords}}</td>
+          <td>{{i.TypeName}}</td>
+          <td>{{i.CategoryName}}</td>
+          <td>{{i.Description}}</td>
+          <td><button type="button" class="btn btn-light"><i class="fas fa-pen-square"></i></button> &nbsp;
+              <button type="button" class="btn btn-light" (click)="ondel(i.No,i.EngWords,i.TypeNo)" ><i class="fas fa-trash-alt"></i></button></td>
+        </tr>
+    </tbody>
+  </table>
+  </div>
+
+
+
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">เพิ่มคำ</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" placeholder="คําอังกฤษ" aria-label="Recipient's username" aria-describedby="button-addon2" #eng><br>
+        <input type="text" class="form-control" placeholder="คำไทย" aria-label="Recipient's username" aria-describedby="button-addon2" #th><br>
+
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{typew}}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" [routerLink]="" (click)="typews((t.value = '1.ศัพท์คอมพิวเตอร์และเทคโนโลยีสารสนเทศ'))" #t>1.ศัพท์คอมพิวเตอร์และเทคโนโลยีสารสนเทศ</a>
+              <a class="dropdown-item" [routerLink]="" (click)="typews((t.value = '2.ศัพท์เทคโนโลยีสารสนเทศ'))" #t>2.ศัพท์เทคโนโลยีสารสนเทศ</a>
+              <a class="dropdown-item" [routerLink]="" (click)="typews((t.value = '3.อื่นๆ'))" #t>3.อื่นๆ</a>
+            </div>
+          </div><br>
+          <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{caw}}
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" [routerLink]="" (click)="ca((c.value = '1.ศัพท์บัญญัติ'))" #c >1.ศัพท์บัญญัติ</a>
+                <a class="dropdown-item" [routerLink]="" (click)="ca((c.value = '2.คําทับศัพ'))" #c >2.คําทับศัพ</a>
+              </div>
+            </div><br>
+
+        <input type="text" class="form-control" placeholder="ความหมาย" aria-label="Recipient's username" aria-describedby="button-addon2" #de>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="onin(eng.value,th.value,de.value)" >ยืนยัน</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" >ปิด</button>
+      </div>
+    </div>
+  </div>
+</div>
